@@ -1,5 +1,6 @@
 require('dotenv').config();
 const Koa = require('koa');
+const axios = require('axios');
 const Router = require('@koa/router');
 const cors = require('@koa/cors');
 const bodyParser = require('koa-bodyparser');
@@ -51,7 +52,7 @@ router.post('/message', async ctx => {
   const { messages } = ctx.request.body;
 
   try {
-    const response = await axios.post(process.env.OPENAI_URL {
+    const response = await axios.post(process.env.OPENAI_URL, {
       model: 'gpt-3.5-turbo',
       messages: messages,
       max_tokens: 4000,
